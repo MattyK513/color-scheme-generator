@@ -1,20 +1,52 @@
-document.getElementById('request-form')
-    .addEventListener('submit', e => {
-        e.preventDefault();
-        const color = document.getElementById('color-input').value.split("")
-        color.shift()
-        fetch(`https://www.thecolorapi.com/scheme?hex=${color.join("")}&`)
-            .then(res => res.json())
-            .then(data => {
-                const newColorArr = data.colors.map(color => color.hex.value)
-                console.log(newColorArr)
-                renderColorDisplay(newColorArr)
-            })
-    })
-    
-    function renderColorDisplay(arr) {
-       const displayDiv = document.getElementById('color-display')
-       displayDiv.innerHTML = arr.map(color => `
-       <div class="color" style="background-color: ${color};"></div>
-       `).join("")
-    }
+<html lang="en">
+    <head>
+        <title>Color Scheme Generator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div id="container" class="container">
+            <form id="request-form">
+                <input id="color-input" type="color" class="color-input">
+                <select id="mode-input" class="mode-input">
+                    <option value="monochrome">Monochrome</option>
+                    <option value="monochrome-dark">Monochrome-dark</option>
+                    <option value="monochrome-light">Monochrome-light</option>
+                    <option value="analogic">Analogic</option>
+                    <option value="complement">Complement</option>
+                    <option value="analogic-complement">Analogic-complement</option>
+                    <option value="triad">Triad</option>
+                    <option value="quad">Quad</option>
+                </select>
+                <label for="count-input" class="count-label">Color count</label>
+                <select id="count-input" class="count-input">
+                    <option>10</option>
+                    <option>9</option>
+                    <option>8</option>
+                    <option>7</option>
+                    <option>6</option>
+                    <option selected>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                </select>
+                <!--<input id="count-input" type="number" class="count-input">-->
+                <button id="submit-btn" type="submit" class="submit-btn">Get color scheme</button>
+            </form>
+            <div id="color-display" class="color-display">
+                <div class="color" style="background-color: #F55A5A;"></div>
+                <p class="hex-value">#F55A5A</p>
+                <div class="color" style="background-color: #2B283A;"></div>
+                <p class="hex-value">#2B283A</p>
+                <div class="color" style="background-color: #FBF3AB;"></div>
+                <p class="hex-value">#FBF3AB</p>
+                <div class="color" style="background-color: #AAD1B6;"></div>
+                <p class="hex-value">#AAD1B6</p>
+                <div class="color" style="background-color: #A626B3;"></div>
+                <p class="hex-value">#A626B3</p>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
