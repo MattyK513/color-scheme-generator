@@ -1,11 +1,46 @@
+* {
+    box-sizing: border-box;
+    
+}
+
 html, body {
     margin: 0;
     padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #D5D4D8;
+    background-color: #1f2937;
 }
 
 /* Typography */
 
+select {
+    padding: 0.5em 0.75em;
+    background-color: #1f2937;
+    color: #D5D4D8;
+}
+
+option {
+    padding: 0.5em 0.75em;
+    margin: 0.5em 0.75em;
+    background-color: #1f2937;
+    color: #D5D4D8;
+}
+
+button {
+    background-color: #3D4B60;
+    border: none;
+    color: #D5D4D8;
+    font-size: 0.75rem;
+    padding: 0.9em 0.8em;
+}
+
 /* Layout */
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .color-input {
 }
 
@@ -13,8 +48,33 @@ html, body {
     width: 11.2em
 }
 
+.color-display {
+    margin: 2em 0 0.5em 0;
+}
+
+.ind-color-div {
+    display: flex;
+}
+
+.hex-value {
+    font-size: 0.75rem;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+}
+
 .color {
-    height: 50px;
-    width: 50px;
-    border: 1px solid black;
+    height: 65px;
+    width: 80%;
+}
+
+/* Media queries */
+@media(min-width: 515px) {
+    .color-display {
+        display: flex;
+    }
+    
+    .ind-color-div {
+    flex-direction: column;
+    }
 }

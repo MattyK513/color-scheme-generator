@@ -25,7 +25,10 @@ function getUrlForFetch() {
 function renderColorDisplay(arr) {
     const displayDiv = document.getElementById('color-display');
     displayDiv.innerHTML = arr.map(color => `
-    <div class="color" style="background-color: ${color};"></div>
+    <div class="ind-color-div">
+        <div class="color" style="background-color: ${color};"></div>
+        <p class="hex-value">${color}</p>
+    </div>
     `).join("");
 };
 
