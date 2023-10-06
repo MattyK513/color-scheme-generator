@@ -32,7 +32,7 @@ document.addEventListener('click', e => {
         } catch(err) {
             console.error('Unable to copy text: ', err);
         } finally {
-            document.body.removeChild(textarea);
+            document.body.removeChild(textArea);
         }
     }
 })
