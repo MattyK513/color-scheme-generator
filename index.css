@@ -85,7 +85,12 @@ form {
     width: 80%;
 }
 
+input:hover, select:hover, button:hover {
+    cursor: pointer;
+}
+
 /* Media queries */
+
 @media(min-width: 350px) and (max-width: 515px) {
     form {
         padding-left: 5%;
