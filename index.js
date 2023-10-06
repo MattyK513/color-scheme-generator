@@ -12,8 +12,29 @@ document.getElementById('request-form')
             });
     });
     
-modeInput.addEventListener("change", () => {
-    getCountOptions()
+modeInput.addEventListener("change", e => {
+    getCountOptions();
+});
+
+document.addEventListener('click', e => {
+    if (e.target.dataset.copy) {
+        const copyText = e.target.dataset.copy;
+        const textArea = document.createElement('textarea');
+        textArea.value = copyText;
+        document.body.appendChild(textArea);
+        
+        textArea.select();
+        textArea.setSelectionRange(0, 99999);
+        
+        try {
+            document.execCommand('copy');
+            alert("Text copied: " + copyText);
+        } catch(err) {
+            console.error('Unable to copy text: ', err);
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    }
 })
     
 function getUrlForFetch() {
@@ -26,8 +47,8 @@ function renderColorDisplay(arr) {
     const displayDiv = document.getElementById('color-display');
     displayDiv.innerHTML = arr.map(color => `
     <div class="ind-color-div">
-        <div class="color" style="background-color: ${color};"></div>
-        <p class="hex-value">${color}</p>
+        <div class="color" style="background-color: ${color};" data-copy="${color}"></div>
+        <p class="hex-value" data-copy="${color}">${color}</p>
     </div>
     `).join("");
 };
