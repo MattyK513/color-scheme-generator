@@ -1,5 +1,6 @@
-const modeInput = document.getElementById('mode-input')
-const countInput = document.getElementById('count-input')
+const modeInput = document.getElementById('mode-input');
+const countInput = document.getElementById('count-input');
+selectivelyApplyHorizontalClass();
 
 document.getElementById('request-form')
     .addEventListener('submit', e => {
@@ -35,6 +36,10 @@ document.addEventListener('click', e => {
             document.body.removeChild(textArea);
         }
     }
+});
+
+window.addEventListener('resize', () => {
+    selectivelyApplyHorizontalClass()
 })
     
 function getUrlForFetch() {
@@ -45,12 +50,14 @@ function getUrlForFetch() {
     
 function renderColorDisplay(arr) {
     const displayDiv = document.getElementById('color-display');
-    displayDiv.innerHTML = arr.map(color => `
+    displayDiv.innerHTML = arr.map((color,index) => `
     <div class="ind-color-div">
         <div class="color" style="background-color: ${color};" data-copy="${color}"></div>
         <p class="hex-value" data-copy="${color}">${color}</p>
     </div>
     `).join("");
+    selectivelyApplyHorizontalClass();
+    document.documentElement.style.setProperty('--horizontal-color-height', `calc(100%/${arr.length})`)
 };
 
 function getCountOptions() {
@@ -85,3 +92,16 @@ function getCountOptions() {
         return number === 5 ? `<option selected>${number}</option>` : `<option>${number}</option>`
     });
 };
+
+function selectivelyApplyHorizontalClass() {
+    const elements = document.getElementsByClassName('ind-color-div');
+    if (window.innerWidth > 332 & window.innerWidth < 515) {
+        for (const element of elements) {
+        element.classList.add('horizontal');
+        }
+    } else {
+        for (const element of elements) {
+        element.classList.remove('horizontal');
+        }
+    }
+}
